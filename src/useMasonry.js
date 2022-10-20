@@ -4,7 +4,7 @@ export function useMasonry(el) {
   const gridItems = [...el.childNodes].filter(
     (gridItem) => gridItem.nodeType === 1
   )
-  const perChunk = gridItems.length / gridCols
+  const perChunk = Math.round(gridItems.length / gridCols)
 
   gridItems.forEach((gridItem) => gridItem.style.removeProperty('margin-top'))
 

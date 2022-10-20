@@ -1,6 +1,6 @@
 {
   "name": "alpinejs-masonry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create masonry layouts based on your CSS grid values 🎉",
   "keywords": [
     "Alpine",

@@ -50,6 +50,19 @@ And that's it.
 Under the hood `x-masonry` will do all the work for you and will even handle
 when the user resizes the window.
 
+### Options
+
+If needed, you can pass the `poll` modifier with a duration in milliseconds like
+this.
+
+```html
+<ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" x-data x-masonry.poll.2500>
+  ...
+</ul>
+```
+
+This will trigger the masonry grid to be reloaded every 2500ms.
+
 ## Stats
 
 ![](https://img.shields.io/bundlephobia/min/alpinejs-masonry)
