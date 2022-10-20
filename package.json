@@ -1,0 +1,19 @@
+{
+  "name": "PLUGIN",
+  "version": "1.0.0",
+  "description": "Description of the plugin",
+  "keywords": [
+    "Alpine",
+    "Alpine JS",
+    "Alpine JS Plugin",
+    "Alpine JS Plugins"
+  ],
+  "module": "dist/FILE.esm.js",
+  "unpkg": "dist/FILE.min.js",
+  "scripts": {
+    "build": "node scripts/build.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.14.53"
+  }
+}
