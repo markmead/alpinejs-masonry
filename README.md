@@ -2,6 +2,8 @@
 
 Create masonry layouts based on your CSS grid values 🎉
 
+![Alpine JS Masonry](https://user-images.githubusercontent.com/50486078/196978590-9ff55d73-4f04-4b34-8d84-8ccf95085369.png)
+
 ## Install
 
 ### With a CDN
