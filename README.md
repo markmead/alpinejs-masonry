@@ -54,6 +54,8 @@ when the user resizes the window.
 
 ### Options
 
+#### Rebuilding Masonry Grid Automatically
+
 If needed, you can pass the `poll` modifier with a duration in milliseconds like
 this.
 
@@ -63,7 +65,15 @@ this.
 </ul>
 ```
 
-This will trigger the masonry grid to be reloaded every 2500ms.
+This will trigger the masonry grid to reload every 2500ms, this is helpful when
+content is being added dynamically.
+
+#### Rebuilding Masonry Grid with Event
+
+You can also trigger the `reload:masonry` on the window to trigger the masonry
+grid to reload.
+
+This can be done easily with `$dispatch('reload:masonry')` in Alpine JS.
 
 ## Stats
 

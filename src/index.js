@@ -12,9 +12,11 @@ export default function (Alpine) {
     }
 
     window.addEventListener('resize', () => useMasonry(el))
+    window.addEventListener('reload:masonry', () => useMasonry(el))
 
     cleanup(() => {
       window.removeEventListener('resize', useMasonry)
+      window.addEventListener('reload:masonry', useMasonry)
     })
   })
 }
