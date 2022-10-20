@@ -3,7 +3,7 @@ import { useMasonry } from './useMasonry'
 export default function (Alpine) {
   Alpine.directive('masonry', (el, { modifiers }, { cleanup }) => {
     const pollModifier = modifiers[0]
-    const pollDuration = modifiers[1]
+    const pollDuration = modifiers[1] || 2500
 
     useMasonry(el)
 
