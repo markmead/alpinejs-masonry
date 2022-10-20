@@ -21,4 +21,4 @@ yarn-error.log*
 .env.production.local
 
 # testing
-# index.html
+index.html

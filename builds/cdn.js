@@ -1,5 +1,5 @@
-import FILE from '../src/index.js'
+import masonry from '../src/index.js'
 
 document.addEventListener('alpine:init', () => {
-  window.Alpine.plugin(FILE)
+  window.Alpine.plugin(masonry)
 })

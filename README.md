@@ -1,56 +1,16 @@
-**--- DELETE START ---**
+# Alpine JS Masonry
 
-# Alpine JS Plugin Template
-
-This is a template repository to help developers quickly build Alpine JS plugins.
-
-## How to Use
-
-1. Clone the repository with the "Use this template" button on GitHub
-2. Run `npm install` to install ES Build
-3. Build your plugin
-
-### Compiling
-
-To compile the code you run `npm run build` which will create two files in the `/dist` directory.
-
-### Testing
-
-In this template you will find a `index.html` file that you can use for testing how the Alpine JS plugin works.
-
-I recommend using [vercel/serve](https://www.npmjs.com/package/serve) to serve this file.
-
-## Things to Change
-
-- Find and replace "PLUGIN" with the name of your plugin
-- Find and replace "FILE" with the name of your compiled file
-- Uncomment "index.html" in the `.gitignore` file
-
-🚨 Make sure find and replace is case sensitive
-
-If you were creating a plugin called "Alpine JS CSV" you could do the following:
-
-- "PLUGIN" to "alpinejs-csv"
-- "FILE" to "csv"
-
-### License
-
-The choice of adding a license and what license is best for your project is up to you.
-
-[Adding a License on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository)
-
-**--- DELETE END ---**
-
-# Alpine JS Plugin
-
-Description of the plugin.
+Create masonry layouts based on your CSS grid values 🎉
 
 ## Install
 
 ### With a CDN
 
 ```html
-<script defer src="https://unpkg.com/PLUGIN@latest/dist/FILE.min.js"></script>
+<script
+  defer
+  src="https://unpkg.com/alpinejs-masonry@latest/dist/masonry.min.js"
+></script>
 
 <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 ```
@@ -58,14 +18,14 @@ Description of the plugin.
 ### With a Package Manager
 
 ```shell
-yarn add -D PLUGIN
+yarn add -D alpinejs-masonry
 
-npm install -D PLUGIN
+npm install -D alpinejs-masonry
 ```
 
 ```js
 import Alpine from 'alpinejs'
-import component from 'PLUGIN'
+import component from 'alpinejs-masonry'
 
 Alpine.plugin(component)
 
@@ -74,11 +34,20 @@ Alpine.start()
 
 ## Example
 
-Examples of how the plugin works.
+```html
+<ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" x-data x-masonry>
+  <li class="bg-slate-800 text-white p-4 rounded h-64">Item 1</li>
+  <li class="bg-slate-800 text-white p-4 rounded h-32">Item 2</li>
+  <li class="bg-slate-800 text-white p-4 rounded h-16">Item 3</li>
+  <li class="bg-slate-800 text-white p-4 rounded h-72">Item 4</li>
+  <li class="bg-slate-800 text-white p-4 rounded h-48">Item 5</li>
+  <li class="bg-slate-800 text-white p-4 rounded h-32">Item 6</li>
+</ul>
+```
 
 ## Stats
 
-![](https://img.shields.io/bundlephobia/min/PLUGIN)
-![](https://img.shields.io/npm/v/PLUGIN)
-![](https://img.shields.io/npm/dt/PLUGIN)
-![](https://img.shields.io/github/license/markmead/PLUGIN)
+![](https://img.shields.io/bundlephobia/min/alpinejs-masonry)
+![](https://img.shields.io/npm/v/alpinejs-masonry)
+![](https://img.shields.io/npm/dt/alpinejs-masonry)
+![](https://img.shields.io/github/license/markmead/alpinejs-masonry)

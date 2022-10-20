@@ -1,15 +1,20 @@
 {
-  "name": "PLUGIN",
+  "name": "alpinejs-masonry",
   "version": "1.0.0",
   "description": "Description of the plugin",
   "keywords": [
     "Alpine",
     "Alpine JS",
     "Alpine JS Plugin",
-    "Alpine JS Plugins"
+    "Alpine JS Plugins",
+    "Alpine JS Masonry",
+    "JavaScript Masonry",
+    "Masonry Layout",
+    "Grid Masonry",
+    "CSS Masonry"
   ],
-  "module": "dist/FILE.esm.js",
-  "unpkg": "dist/FILE.min.js",
+  "module": "dist/masonry.esm.js",
+  "unpkg": "dist/masonry.min.js",
   "scripts": {
     "build": "node scripts/build.js"
   },

@@ -1,13 +1,13 @@
 build({
   entryPoints: [`builds/cdn.js`],
-  outfile: `dist/FILE.min.js`,
+  outfile: `dist/masonry.min.js`,
   platform: 'browser',
   define: { CDN: true },
 })
 
 build({
   entryPoints: [`builds/module.js`],
-  outfile: `dist/FILE.esm.js`,
+  outfile: `dist/masonry.esm.js`,
   platform: 'neutral',
   mainFields: ['main', 'module'],
 })
