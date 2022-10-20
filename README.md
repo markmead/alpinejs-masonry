@@ -45,6 +45,11 @@ Alpine.start()
 </ul>
 ```
 
+And that's it.
+
+Under the hood `x-masonry` will do all the work for you and will even handle
+when the user resizes the window.
+
 ## Stats
 
 ![](https://img.shields.io/bundlephobia/min/alpinejs-masonry)
