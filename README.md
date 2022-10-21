@@ -49,7 +49,7 @@ Alpine.start()
 
 And that's it.
 
-_Fixed heights are not necessary!_
+_Fixed heights and Tailwind CSS are not necessary 🙅‍♀️_
 
 Under the hood `x-masonry` will do all the work for you and will even handle
 when the user resizes the window.
@@ -85,7 +85,7 @@ this.
 This will trigger the masonry grid to reload every 2500ms, this is helpful when
 content is being added dynamically.
 
-#### Rebuilding Masonry Grid with Event
+#### Rebuilding Masonry Grid with an Event
 
 You can also trigger the `reload:masonry` on the window to trigger the masonry
 grid to reload.
