@@ -54,6 +54,21 @@ when the user resizes the window.
 
 ### Options
 
+#### Delay Building Masonry Grid
+
+If needed, you can pass the `wait` modifier with a duration in milliseconds like
+this.
+
+```html
+<ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4" x-data x-masonry.wait.2500>
+  ...
+</ul>
+```
+
+This will trigger the masonry grid to build after 2500ms, this is helpful when
+you have slow content that takes a while to load. However, I'd recommend using
+the `poll` modifier.
+
 #### Rebuilding Masonry Grid Automatically
 
 If needed, you can pass the `poll` modifier with a duration in milliseconds like

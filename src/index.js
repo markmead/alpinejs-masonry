@@ -2,14 +2,15 @@ import { useMasonry } from './useMasonry'
 
 export default function (Alpine) {
   Alpine.directive('masonry', (el, { modifiers }, { cleanup }) => {
-    const pollModifier = modifiers[0]
-    const pollDuration = modifiers[1] || 2500
+    const waitPollModifier = modifiers[0]
+    const waitPollDuration = modifiers[1] || 2500
 
-    useMasonry(el)
+    waitPollModifier === 'wait'
+      ? setTimeout(() => useMasonry(el), waitPollDuration)
+      : useMasonry(el)
 
-    if (pollModifier) {
-      setInterval(() => useMasonry(el), pollDuration)
-    }
+    waitPollModifier === 'poll' &&
+      setInterval(() => useMasonry(el), waitPollDuration)
 
     window.addEventListener('resize', () => useMasonry(el))
     window.addEventListener('reload:masonry', () => useMasonry(el))
