@@ -49,6 +49,8 @@ Alpine.start()
 
 And that's it.
 
+_Fixed heights are not necessary!_
+
 Under the hood `x-masonry` will do all the work for you and will even handle
 when the user resizes the window.
 
@@ -89,6 +91,13 @@ You can also trigger the `reload:masonry` on the window to trigger the masonry
 grid to reload.
 
 This can be done easily with `$dispatch('reload:masonry')` in Alpine JS.
+
+## Issues
+
+### Grid Items Stretching
+
+This can be fixed by adding `align-items: flex-start` to the element with
+`display: grid`.
 
 ## Stats
 
