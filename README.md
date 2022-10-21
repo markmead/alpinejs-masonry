@@ -27,9 +27,9 @@ npm install -D alpinejs-masonry
 
 ```js
 import Alpine from 'alpinejs'
-import component from 'alpinejs-masonry'
+import masonry from 'alpinejs-masonry'
 
-Alpine.plugin(component)
+Alpine.plugin(masonry)
 
 Alpine.start()
 ```
