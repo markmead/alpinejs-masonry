@@ -1,10 +1,9 @@
 export function useMasonry(el) {
   const gridGap = parseFloat(getComputedStyle(el).gap)
-  const gridCols = getComputedStyle(el).gridTemplateRows.split(' ').length
   const gridItems = [...el.childNodes].filter(
     (gridItem) => gridItem.nodeType === 1
   )
-  const perChunk = Math.round(gridItems.length / gridCols)
+  const perChunk = getComputedStyle(el).gridTemplateColumns.split(' ').length
 
   gridItems.forEach((gridItem) => gridItem.style.removeProperty('margin-top'))
 
