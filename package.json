@@ -1,6 +1,6 @@
 {
   "name": "alpinejs-masonry",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Create masonry layouts based on your CSS grid values 🎉",
   "keywords": [
     "Alpine",
@@ -19,6 +19,6 @@
     "build": "node scripts/build.js"
   },
   "devDependencies": {
-    "esbuild": "^0.14.53"
+    "esbuild": "^0.16.2"
   }
 }

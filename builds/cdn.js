@@ -1,5 +1,3 @@
 import masonry from '../src/index.js'
 
-document.addEventListener('alpine:init', () => {
-  window.Alpine.plugin(masonry)
-})
+document.addEventListener('alpine:init', () => window.Alpine.plugin(masonry))
