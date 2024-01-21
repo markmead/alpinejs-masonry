@@ -1,7 +1,7 @@
 export function useMasonry(el) {
   const gridGap = parseFloat(getComputedStyle(el).gap)
   const gridItems = [...el.childNodes].filter(
-    (gridItem) => gridItem.nodeType === 1
+    (gridItem) => ((gridItem.nodeType === 1) and (gridItem.tagName != 'TEMPLATE'))
   )
   const perChunk = getComputedStyle(el).gridTemplateColumns.split(' ').length
 
