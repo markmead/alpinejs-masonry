@@ -15,6 +15,11 @@
   ],
   "module": "dist/masonry.esm.js",
   "unpkg": "dist/masonry.min.js",
+  "files": [
+    "dist/",
+    "src/",
+    "builds/"
+  ],
   "scripts": {
     "build": "node scripts/build.js"
   },
