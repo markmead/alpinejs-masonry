@@ -1,23 +1,32 @@
-import { useMasonry } from './useMasonry'
+import { useMasonry } from './useMasonry.js'
 
 export default function (Alpine) {
   Alpine.directive('masonry', (el, { modifiers }, { cleanup }) => {
-    const waitPollModifier = modifiers[0]
-    const waitPollDuration = modifiers[1] || 2500
+    const [waitPollModifier, rawDuration] = modifiers
+    const waitPollDuration = Number(rawDuration) || 2500
 
-    waitPollModifier === 'wait'
-      ? setTimeout(() => useMasonry(el), waitPollDuration)
-      : useMasonry(el)
+    const abortController = new AbortController()
+    const buildMasonry = () => useMasonry(el)
 
-    waitPollModifier === 'poll' &&
-      setInterval(() => useMasonry(el), waitPollDuration)
+    if (waitPollModifier === 'wait') {
+      const waitTimer = setTimeout(buildMasonry, waitPollDuration)
 
-    window.addEventListener('resize', () => useMasonry(el))
-    window.addEventListener('reload:masonry', () => useMasonry(el))
+      cleanup(() => clearTimeout(waitTimer))
+    } else {
+      buildMasonry()
+    }
 
-    cleanup(() => {
-      window.removeEventListener('resize', useMasonry)
-      window.addEventListener('reload:masonry', useMasonry)
-    })
+    if (waitPollModifier === 'poll') {
+      const pollTimer = setInterval(buildMasonry, waitPollDuration)
+
+      cleanup(() => clearInterval(pollTimer))
+    }
+
+    const listenerOptions = { signal: abortController.signal }
+
+    window.addEventListener('resize', buildMasonry, listenerOptions)
+    window.addEventListener('reload:masonry', buildMasonry, listenerOptions)
+
+    cleanup(() => abortController.abort())
   })
 }
