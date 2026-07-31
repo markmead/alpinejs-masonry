@@ -6,18 +6,6 @@
       "sourceType": "github",
       "skillPath": "plugins/claude-md-management/skills/claude-md-improver/SKILL.md",
       "computedHash": "d6707ed0467d9664d0f9d2c44724c8fb1814475ec6d3c62a5d54bbbe807e0775"
-    },
-    "documentation": {
-      "source": "anthropics/knowledge-work-plugins",
-      "sourceType": "github",
-      "skillPath": "engineering/skills/documentation/SKILL.md",
-      "computedHash": "c24a1672a7edad51225859d6549d9a61892f704a4527a65ce3cddd913ca04550"
-    },
-    "modern-web-guidance": {
-      "source": "googlechrome/modern-web-guidance",
-      "sourceType": "github",
-      "skillPath": "skills/modern-web-guidance/SKILL.md",
-      "computedHash": "d91c3174e15335fc8db6ccfb33c36ff850121f97aa57ba4600f15712a4c5a776"
     }
   }
 }
