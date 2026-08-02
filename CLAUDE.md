@@ -44,6 +44,13 @@ be reasoned about and tested independently of Alpine.
   working" report.
 - For each item, the item `perChunk` positions earlier is the one directly above it in
   the same column. The gap between them is closed with a negative `margin-top`.
+- The row gap comes from `parseFloat` over computed `gap`, which returns the row value of
+  the `row-gap column-gap` pair. An unset gap computes to `normal`, not `0px`, so the
+  `|| 0` fallback is load-bearing — without it every margin is written as `-NaNpx` and
+  dropped by the CSS parser, and a gapless grid gets no masonry at all with no error.
+- Margins are written as `gridGap - spaceBetween`, not a negated `spaceBetween - gridGap`.
+  The latter produces a double negative (`--0.01px`, also silently dropped) whenever
+  sub-pixel `getBoundingClientRect` rounding puts the measured space under the gap.
 - Margins are cleared at the top of every run, so the function is idempotent and safe to
   call repeatedly.
 - `<template>` elements are filtered out — Alpine leaves them in the DOM for `x-for`, and
@@ -58,6 +65,9 @@ the `poll` modifier, then the `wait` modifier. `resize` is always bound.
 Modifiers are positional: `modifiers[0]` is `wait` or `poll`, `modifiers[1]` is the
 duration in ms (default 2500). The two are mutually exclusive — `x-masonry.wait.500.poll.500`
 will not work, only the first modifier is read.
+
+`poll` floors its duration at 100ms; `wait` does not, because a 0 wait is a legitimate
+request to build immediately whereas a 0 poll would relayout ~250x a second.
 
 ## Publishing
 

@@ -74,6 +74,8 @@ This will trigger the masonry grid to build after 2500ms, this is helpful when
 you have slow content that takes a while to load. However, I'd recommend using
 the `poll` modifier.
 
+The duration is optional and defaults to 2500ms, so `x-masonry.wait` works too.
+
 #### Rebuilding Masonry Grid Automatically
 
 If needed, you can pass the `poll` modifier with a duration in milliseconds like
@@ -88,6 +90,15 @@ this.
 This will trigger the masonry grid to reload every 2500ms, this is helpful when
 content is being added dynamically.
 
+Polling is capped at a minimum of 100ms. Anything lower is treated as 100ms, as
+rebuilding the layout any faster than that measures every item on the page
+hundreds of times a second for no visible benefit.
+
+#### Combining Modifiers
+
+You can't. Only the first modifier is read, so `x-masonry.wait.500.poll.500`
+waits and never polls. Pick one.
+
 #### Rebuilding Masonry Grid with an Event
 
 You can also trigger the `reload:masonry` on the window to trigger the masonry
@@ -101,6 +112,14 @@ This can be done easily with `$dispatch('reload:masonry')` in Alpine JS.
 
 This can be fixed by adding `align-items: flex-start` to the element with
 `display: grid`.
+
+### Grid Inside a Hidden Element
+
+If the grid starts inside something hidden with `display: none`, like a closed
+tab or accordion panel, the browser doesn't resolve the column widths yet and
+the layout is built with the wrong number of columns.
+
+Dispatch `reload:masonry` when the content is revealed to rebuild it correctly.
 
 ## Stats
 
