@@ -1,5 +1,7 @@
 export function useMasonry(el) {
-  const gridGap = parseFloat(getComputedStyle(el).gap)
+  // An unset gap computes to "normal", not "0px". Without the fallback every
+  // margin below is written as "-NaNpx" and silently dropped by the parser.
+  const gridGap = parseFloat(getComputedStyle(el).gap) || 0
   const gridItems = [...el.childNodes].filter(
     (gridItem) => ((gridItem.nodeType === 1) && (gridItem.tagName !== 'TEMPLATE'))
   )
@@ -23,7 +25,7 @@ export function useMasonry(el) {
     const spaceBetween = currentItemTop - previousItemBottom
 
     if (spaceBetween !== gridGap) {
-      gridItem.style.marginTop = `-${spaceBetween - gridGap}px`
+      gridItem.style.marginTop = `${gridGap - spaceBetween}px`
     }
   })
 }

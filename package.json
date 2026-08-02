@@ -2,6 +2,8 @@
   "name": "alpinejs-masonry",
   "version": "1.0.16",
   "description": "Create masonry layouts based on your CSS grid values 🎉",
+  "license": "MIT",
+  "repository": "github:markmead/alpinejs-masonry",
   "keywords": [
     "Alpine",
     "Alpine JS",
