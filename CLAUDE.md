@@ -83,9 +83,17 @@ esbuild is listed under `allowBuilds` because its postinstall fetches a platform
 binary and pnpm blocks build scripts by default. A new dependency with a postinstall step
 needs the same treatment.
 
-## Known quirk
+## Cleanup contract
 
-`cleanup` in `src/index.js:18-21` is broken both ways: `resize` is removed by a different
-function reference than the arrow that was added, and `reload:masonry` calls
-`addEventListener` instead of `removeEventListener`. Listeners accumulate on teardown.
-Flag rather than silently fix — the correction changes `setInterval`/listener lifetime.
+The directive schedules up to four things, and every one is unregistered through Alpine's
+`cleanup`: the `wait` timeout, the `poll` interval, and the `resize` and `reload:masonry`
+window listeners.
+
+Both listeners are torn down with an `AbortController` signal rather than
+`removeEventListener`. `buildMasonry` in `src/index.js` closes over `el`, so every
+directive instance has its own function reference and there is no stable callback to hand
+to `removeEventListener`. Passing the imported `useMasonry` instead removes nothing — that
+was the original leak.
+
+Anything added here needs its `cleanup` added alongside it, or it outlives teardown and
+keeps firing against a detached element.

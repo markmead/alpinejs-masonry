@@ -1,23 +1,41 @@
-import { useMasonry } from './useMasonry'
+import { useMasonry } from './useMasonry.js'
+
+const defaultDuration = 2500
+const minimumPollDuration = 100
 
 export default function (Alpine) {
   Alpine.directive('masonry', (el, { modifiers }, { cleanup }) => {
-    const waitPollModifier = modifiers[0]
-    const waitPollDuration = modifiers[1] || 2500
+    const [waitPollModifier, rawDuration] = modifiers
+    const parsedDuration = Number(rawDuration)
+    const hasDuration = Boolean(rawDuration) && Number.isFinite(parsedDuration)
+    const waitPollDuration = hasDuration ? parsedDuration : defaultDuration
 
-    waitPollModifier === 'wait'
-      ? setTimeout(() => useMasonry(el), waitPollDuration)
-      : useMasonry(el)
+    const abortController = new AbortController()
+    const buildMasonry = () => useMasonry(el)
 
-    waitPollModifier === 'poll' &&
-      setInterval(() => useMasonry(el), waitPollDuration)
+    if (waitPollModifier === 'wait') {
+      const waitTimer = setTimeout(buildMasonry, waitPollDuration)
 
-    window.addEventListener('resize', () => useMasonry(el))
-    window.addEventListener('reload:masonry', () => useMasonry(el))
+      cleanup(() => clearTimeout(waitTimer))
+    } else {
+      buildMasonry()
+    }
 
-    cleanup(() => {
-      window.removeEventListener('resize', useMasonry)
-      window.addEventListener('reload:masonry', useMasonry)
-    })
+    if (waitPollModifier === 'poll') {
+      // setInterval clamps anything below 4ms, so an unclamped 0 would run a
+      // full relayout ~250x a second. Only poll needs this floor — a 0 wait is
+      // a legitimate request to build immediately.
+      const pollDuration = Math.max(waitPollDuration, minimumPollDuration)
+      const pollTimer = setInterval(buildMasonry, pollDuration)
+
+      cleanup(() => clearInterval(pollTimer))
+    }
+
+    const listenerOptions = { signal: abortController.signal }
+
+    window.addEventListener('resize', buildMasonry, listenerOptions)
+    window.addEventListener('reload:masonry', buildMasonry, listenerOptions)
+
+    cleanup(() => abortController.abort())
   })
 }
